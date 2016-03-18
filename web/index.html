@@ -1,0 +1,100 @@
+<!DOCTYPE><!-- Thamires e Caio César -->
+<html lang="pt-br">
+	<head>
+		<title>formulario</title>
+
+		<meta charset="utf-8">
+
+		<link rel="stylesheet" type="text/css" href="style.css" media="all">
+
+		<script type ="text/javascript" src="jquery-2.1.1.min.js"></script>
+
+		<script>
+			function limpar(){
+				document.getElementById("1").value = "";
+				document.getElementById("2").value = "";
+				document.getElementById("3").value = "";
+			}
+
+			function validaData(data){
+				var novaData = new Array;
+				novaData = data.split("/");
+				var valida = false;
+				var dia;
+				var mes;
+				var ano;
+				
+				if ((ano < 2017) && (ano > 0)){
+					if ( (mes == 01) || (mes == 03) || (mes == 05) || (mes == 07) || (mes == 08) || (mes == 10) || (mes == 11) ){
+						if ( (dia >= 1) && (dia <= 31) ){
+							valida = true;
+						}
+					}
+					if ( (mes == 04) || (mes == 06) || (mes == 10) || (mes == 11) ){
+						if ( (dia >= 1) && (dia <= 30) ){
+							valida = true;
+						}
+					}
+					if (mes == 02){
+						if (dia == 29){
+							if ( ((ano % 4) == 0) && ((ano % 100) != 0) ){
+								valida = true;
+							}
+							else{							
+								if ( ((ano % 4) == 0) && ((ano % 100) == 0) && ((ano % 400) == 0)){
+									valida = true;
+								}								
+							}
+						}
+						else{
+							if (dia <= 28){
+								valida = true;
+							}
+						}
+					}
+				}
+				return valida;
+			}
+
+			function validaTudo(){
+				if (validaData(document.getElementById("2").value) == true){
+					alert("taserto");
+				}
+			}
+		</script>
+	</head>
+	<body>
+
+		<h1>Formulario de Inscrição</h1>
+
+		<hr>
+
+		<br class="linha">
+
+		<div class="nome":>		
+		<label for="nome"> <b>Nome</b>:</label>
+
+		<input type="text" id=1 name="nome" /><br>
+		<span>
+		</div>		
+
+		<div class="nascimento":>	
+		<label for="nascimento"> <b>Data de Nascimento:</b></label>
+
+		<input type="text" id=2 name="nascimento" /><br>
+		<span>
+		</div>
+
+		<div class="email":>	
+		<label for="email"><b> Email:</b></label>
+
+		<input type="text" id=3 name="email" /><br>
+		<span>
+		</div>
+
+		<input type="button" name="limpar" value="Limpar" onclick="limpar();" id="limpa">
+
+		<input type="button" name="enviar" value="Enviar" onclick="validaTudo" id="envia">
+
+	</body>
+</html>
